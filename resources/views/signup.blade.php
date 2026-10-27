@@ -1,18 +1,19 @@
 @extends('layout.home')
 @section('content')
-  <form>
+  <form  action="{{route('user.store') }}"  method="POST" >
+    @csrf
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+        <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp">
 
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
         
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password">
+        <input type="password" name="password" class="form-control" id="password">
 
         <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPassword">
+        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
 
 
     </div>

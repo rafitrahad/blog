@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -25,15 +26,23 @@ class AuthController extends Controller
         return view('signup');
     }
 
-    public function signup(Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => ['required', 'max:100'],
-            'email' => ['required'],
-            'password' => ['required', 'confirmPassword', Password::min(8)],
+            'email' => ['required', 'email' ],
+            'password' => ['required', 'confirmed', Password::min(8)],
         ]);
-        
-        
 
+        $user=User::create([
+
+        'name'=> $validated['name'],
+        'email'=> $validated['email'],
+        'password'=> $validated['password'],
+        ]);
+
+        return  redirect()->route('show.login');
     }
+
 }
+
