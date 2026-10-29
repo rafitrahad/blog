@@ -19,7 +19,7 @@
         <input type="text" name="description"  id="description"  class="form-control">
 
     </div>
-    <button type="submit" class="btn btn-primary">Signup</button>
+    <button type="submit" class="btn btn-primary">POST</button>
   </form>
 
 @endsection

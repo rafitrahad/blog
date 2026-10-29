@@ -25,7 +25,7 @@ class PostStoreRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:200'],
             'summary' => ['required', 'string', 'max:300'],
-            'document' => ['image', 'mimes:jpeg,png,webp', 'max:1000'],
+            'document' => ['image', 'mimes:jpeg,png,webp', 'max:10000'],
             'description' => ['required', 'string', 'max:1000'],
         ];
     }

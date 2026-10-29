@@ -6,14 +6,18 @@ use App\Http\Requests\PostStoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Validation\Rules\File;
+use App\Services\Interfaces\PostInterface;
 
 class PostController extends Controller
 {
-
+    public $post;
+    public function __construct(PostInterface $post)
+    {
+        $this->post = $post;
+    }
 
     public function show_store()
     {
-
         return view('post');
     }
 
@@ -21,21 +25,13 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('index', compact('posts'));
+        return redirect()->route('show.home');
     }
 
     public function store(PostStoreRequest $request)
     {
+        $this->post->store($request);
 
-        $path = $request->file('document')->store('posts', 'public');
-
-        Post::create([
-            'title' => $request->title,
-            'summary' => $request->summary,
-            'file_path' => $path,
-            'description' => $validated['description']
-        ]);
-
-        return redirect()->route('show.post');
+        return redirect()->route('show.home');
     }
 }
